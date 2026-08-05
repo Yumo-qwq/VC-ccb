@@ -293,7 +293,7 @@ watch(
                 <dd>{{ formatPlays(goal.plays) }}</dd>
               </div>
               <div>
-                <dt>Bilibili</dt>
+                <dt>bilibili</dt>
                 <dd>
                   <a :href="goal.bilibiliUrl" target="_blank" rel="noreferrer noopener">打开链接</a>
                 </dd>
