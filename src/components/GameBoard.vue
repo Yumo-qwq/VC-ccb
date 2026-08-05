@@ -36,6 +36,7 @@ const emit = defineEmits(['submit-guess', 'restart']);
 const query = ref('');
 const isSearchFocused = ref(false);
 const isResultModalDismissed = ref(false);
+const coverLoadFailed = ref(false);
 
 const usedIds = computed(() => new Set(props.guesses.map((guess) => guess.song.id)));
 const cellLabels = {
@@ -108,6 +109,10 @@ function closeResultModal() {
   isResultModalDismissed.value = true;
 }
 
+function handleCoverError() {
+  coverLoadFailed.value = true;
+}
+
 watch(
   () => props.guesses.length,
   () => {
@@ -116,9 +121,10 @@ watch(
 );
 
 watch(
-  () => props.status,
+  () => [props.status, props.goal?.id],
   () => {
     isResultModalDismissed.value = false;
+    coverLoadFailed.value = false;
   }
 );
 </script>
@@ -247,7 +253,22 @@ watch(
         </div>
 
         <div class="result-modal-body">
-          <img class="result-modal-cover" :src="goal.cover" :alt="goal.title" />
+          <div class="result-modal-cover-frame">
+            <img
+              v-if="goal.cover && !coverLoadFailed"
+              class="result-modal-cover"
+              :src="goal.cover"
+              :alt="goal.title"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              referrerpolicy="no-referrer"
+              @error="handleCoverError"
+            />
+            <div v-else class="result-modal-cover-fallback" role="img" aria-label="封面暂时无法加载">
+              封面暂时无法加载
+            </div>
+          </div>
           <div class="result-modal-info">
             <h4>{{ goal.title }}</h4>
             <dl class="result-meta-list">

@@ -6,6 +6,7 @@ import rawSongs from './data/vcpedia_legendary_songs.json';
 
 const songs = rawSongs.filter((song) => Number.isFinite(song.plays)).map((song) => ({
   ...song,
+  cover: normalizeCoverUrl(song.cover),
   searchKeys: [song.title, ...(song.aliases || [])].map((value) => value.toLowerCase()),
   searchText: [song.title, ...(song.aliases || [])].join(' ').toLowerCase()
 }));
@@ -223,6 +224,22 @@ function isBetween(value, min, max) {
 
 function unique(values) {
   return Array.from(new Set(values)).sort((a, b) => String(a).localeCompare(String(b), 'zh-Hans-CN'));
+}
+
+function normalizeCoverUrl(value) {
+  if (!value) {
+    return '';
+  }
+
+  if (value.startsWith('/covers/')) {
+    return `${import.meta.env.BASE_URL}${value.slice(1)}`;
+  }
+
+  if (value.startsWith('//')) {
+    return `https:${value}`;
+  }
+
+  return value.replace(/^http:\/\//i, 'https://');
 }
 
 watch(poolKey, startRound);

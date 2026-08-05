@@ -147,7 +147,32 @@ def split_people(text: str) -> list[str]:
 def canonical_url(url_or_path: str | None) -> str | None:
     if not url_or_path:
         return None
-    return urljoin(BASE_URL, html.unescape(url_or_path))
+    url = urljoin(BASE_URL, html.unescape(url_or_path))
+    if url.startswith("//"):
+        return f"https:{url}"
+    if url.lower().startswith("http://"):
+        return f"https://{url[7:]}"
+    return url
+
+
+def image_url_from_tag(img_tag: str | None) -> str | None:
+    if not img_tag:
+        return None
+
+    for attr in ("data-src", "data-original", "data-lazy-src", "src"):
+        value = attr_value(img_tag, attr)
+        if not value or value.lower().startswith("data:"):
+            continue
+        if re.search(r"(?:transparent|spacer|blank)\.(?:gif|png)(?:$|\?)", value, flags=re.IGNORECASE):
+            continue
+        return canonical_url(value)
+
+    srcset = attr_value(img_tag, "srcset")
+    if srcset:
+        first_url = srcset.split(",", 1)[0].strip().split(" ", 1)[0]
+        return canonical_url(first_url)
+
+    return None
 
 
 def extract_bilibili_id(url: str | None) -> tuple[str, str] | tuple[None, None]:
@@ -214,7 +239,7 @@ def parse_list_page(page_html: str, source_url: str, engine: str) -> tuple[list[
         detail_url = canonical_url(attr_value(title_match.group(1), "href"))
 
         img_tag = first_group(r"(<img\b[^>]*>)", block)
-        cover = canonical_url(attr_value(img_tag, "src") if img_tag else None)
+        cover = image_url_from_tag(img_tag)
 
         singer_header = block.split("<img", 1)[0]
         singer_titles = re.findall(r'title\s*=\s*(["\'])(.*?)\1', singer_header, flags=re.DOTALL)
@@ -358,6 +383,9 @@ def scrape(args: argparse.Namespace) -> tuple[list[dict[str, Any]], dict[str, An
 
     all_songs = dedupe_songs(all_songs)
 
+    if args.covers_only:
+        return merge_cover_only(all_songs, args.output), meta
+
     if args.fetch_details:
         for index, song in enumerate(all_songs, start=1):
             if not song.get("detailUrl"):
@@ -396,6 +424,29 @@ def dedupe_songs(songs: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return result
 
 
+def merge_cover_only(scraped_songs: list[dict[str, Any]], output_path: Path) -> list[dict[str, Any]]:
+    if not output_path.exists():
+        return scraped_songs
+
+    try:
+        existing_songs = json.loads(output_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return scraped_songs
+
+    covers_by_id = {
+        song["id"]: song.get("cover")
+        for song in scraped_songs
+        if song.get("id") and song.get("cover")
+    }
+    merged_songs = []
+    for song in existing_songs:
+        updated = dict(song)
+        if updated.get("id") in covers_by_id:
+            updated["cover"] = covers_by_id[updated["id"]]
+        merged_songs.append(updated)
+    return merged_songs
+
+
 def write_output(path: Path, songs: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
@@ -412,6 +463,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--delay", type=float, default=8.0, help="Seconds between VCPedia list requests (default: 8).")
     parser.add_argument("--jitter", type=float, default=1.0, help="Random extra wait in seconds before network requests (default: 1).")
     parser.add_argument("--fetch-details", action="store_true", help="Also fetch each song detail page. This is slower and heavier.")
+    parser.add_argument("--covers-only", action="store_true", help="Update only cover URLs while preserving the existing output data.")
     parser.add_argument("--detail-delay", type=float, default=10.0, help="Seconds between detail-page requests (default: 10).")
     parser.add_argument("--no-bilibili-stats", action="store_true", help="Do not fetch current Bilibili play counts.")
     parser.add_argument("--bilibili-delay", type=float, default=1.5, help="Seconds between Bilibili API requests (default: 1.5).")
