@@ -1,0 +1,23 @@
+{
+  "scrapedAt": "2026-08-05T10:43:45.118043+00:00",
+  "sourcePages": [
+    "https://vcpedia.cn/VOCALOID%E4%B8%AD%E6%96%87%E4%BC%A0%E8%AF%B4%E6%9B%B2",
+    "https://vcpedia.cn/X_Studio%E4%BC%A0%E8%AF%B4%E6%9B%B2",
+    "https://vcpedia.cn/Synthesizer_V%E4%BC%A0%E8%AF%B4%E6%9B%B2",
+    "https://vcpedia.cn/ACE%E4%BC%A0%E8%AF%B4%E6%9B%B2"
+  ],
+  "skippedCovers": 239,
+  "statErrors": [
+    {
+      "title": "二重变革",
+      "url": "https://www.bilibili.com/video/av3370007",
+      "error": "Bilibili API returned code -404: 啥都木有"
+    },
+    {
+      "title": "毕业通知",
+      "url": "https://www.bilibili.com/video/BV1vN411e76Y",
+      "error": "Bilibili API returned code 62002: 稿件不可见"
+    }
+  ],
+  "detailErrors": []
+}
