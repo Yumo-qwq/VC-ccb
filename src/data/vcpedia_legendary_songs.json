@@ -778,7 +778,7 @@
   {
     "id": "acc716ebe5d6",
     "title": "hello&bye,days",
-    "producer": "COPY",
+    "producer": "COP",
     "singers": [
       "洛天依"
     ],
@@ -1327,7 +1327,7 @@
   {
     "id": "a162dcc6fc31",
     "title": "追光使者",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -2599,7 +2599,7 @@
   {
     "id": "99683ecc9ff6",
     "title": "Attack!",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "合唱"
     ],
@@ -3001,7 +3001,7 @@
   {
     "id": "048df43aad4b",
     "title": "万分之一的光",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -3264,7 +3264,7 @@
   {
     "id": "189778ce939f",
     "title": "夏虫",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -3626,26 +3626,6 @@
     "bilibiliTitle": "开心高兴歌"
   },
   {
-    "id": "cbda4ec83bbf",
-    "title": "你先别急",
-    "producer": "CヰEL文",
-    "singers": [
-      "初音未来"
-    ],
-    "year": 2023,
-    "plays": 2189674,
-    "engine": "VOCALOID",
-    "cover": "http://i2.hdslb.com/bfs/archive/1266d54420208da59b4d261c1026b486b30cf8f5.jpg",
-    "bilibiliUrl": "https://www.bilibili.com/video/av434999950",
-    "detailUrl": "https://vcpedia.cn/%E4%BD%A0%E5%85%88%E5%88%AB%E6%80%A5",
-    "sourcePage": "https://vcpedia.cn/VOCALOID%E4%B8%AD%E6%96%87%E4%BC%A0%E8%AF%B4%E6%9B%B2",
-    "submittedAt": "2023-01-08 14:56",
-    "achievedAt": "2023-04-10 18:59",
-    "bilibiliAid": 434999950,
-    "bilibiliBvid": "BV1m3411m74x",
-    "bilibiliTitle": "【原创】你先别急 feat.初音ミク"
-  },
-  {
     "id": "851201f58c69",
     "title": "逃避现实",
     "producer": "QGRay",
@@ -3668,7 +3648,7 @@
   {
     "id": "125ea9724161",
     "title": "大地球歌厅",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依",
       "合唱"
@@ -3750,7 +3730,7 @@
   {
     "id": "265315ab4f6b",
     "title": "再声 Recall",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -3810,7 +3790,7 @@
   {
     "id": "7ca8c373e1d7",
     "title": "潮声回响",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -4072,7 +4052,7 @@
   {
     "id": "99742f40720b",
     "title": "潮声回响",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -5851,7 +5831,7 @@
   {
     "id": "ffb5df9cf7d6",
     "title": "光与影的对白",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -5911,7 +5891,7 @@
   {
     "id": "d9e99bede46c",
     "title": "非常非议",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -5951,7 +5931,7 @@
   {
     "id": "8bffd8ec68c3",
     "title": "万物有灵",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6032,7 +6012,7 @@
   {
     "id": "e18ba6476494",
     "title": "有兽焉",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6052,7 +6032,7 @@
   {
     "id": "2bc5cd454df6",
     "title": "Break Out",
-    "producer": "乐正绫 官方账号",
+    "producer": "乐正绫",
     "singers": [
       "东方栀子"
     ],
@@ -6072,7 +6052,7 @@
   {
     "id": "03cb7d5464fb",
     "title": "灼",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6092,7 +6072,7 @@
   {
     "id": "281b221a76ab",
     "title": "聚光",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6132,7 +6112,7 @@
   {
     "id": "1deed1210291",
     "title": "恋爱色魔法",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6172,7 +6152,7 @@
   {
     "id": "b9e42e25a308",
     "title": "月华舞",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6209,7 +6189,7 @@
   {
     "id": "ea98ef593a51",
     "title": "歌行四方",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6431,7 +6411,7 @@
   {
     "id": "01d5f72a8a9d",
     "title": "又一个夜晚",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6492,7 +6472,7 @@
   {
     "id": "11ebaaf338fa",
     "title": "蝴蝶",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6512,7 +6492,7 @@
   {
     "id": "32e45d480e42",
     "title": "潮声回响",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6552,7 +6532,7 @@
   {
     "id": "f93f1c326f12",
     "title": "戏游九州",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6572,7 +6552,7 @@
   {
     "id": "2dd822974400",
     "title": "金鳞甲",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6733,7 +6713,7 @@
   {
     "id": "39882586b199",
     "title": "听见WO！",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6873,7 +6853,7 @@
   {
     "id": "615986e978c8",
     "title": "珍珠",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6893,7 +6873,7 @@
   {
     "id": "0fd3eab654e2",
     "title": "权御天下",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -6913,7 +6893,7 @@
   {
     "id": "e52846ecfaef",
     "title": "白石溪",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依",
       "乐正绫"
@@ -6954,7 +6934,7 @@
   {
     "id": "9b7f41a60eca",
     "title": "为每一位将军的势不可挡",
-    "producer": "三国杀官方账号",
+    "producer": "三国",
     "singers": [
       "洛天依"
     ],
@@ -6994,7 +6974,7 @@
   {
     "id": "aa3f1567087e",
     "title": "乐鸣东方",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
@@ -7116,7 +7096,7 @@
   {
     "id": "c16bc6b13ecd",
     "title": "太阳是什么颜色",
-    "producer": "乐正绫 官方账号",
+    "producer": "乐正绫",
     "singers": [
       "乐正绫"
     ],
@@ -7136,7 +7116,7 @@
   {
     "id": "46a5bf538dab",
     "title": "唱山",
-    "producer": "洛天依 官方账号",
+    "producer": "洛天依",
     "singers": [
       "洛天依"
     ],
