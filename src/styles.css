@@ -573,32 +573,66 @@ h3 {
 }
 
 @media (max-width: 640px) {
+  body {
+    background:
+      linear-gradient(180deg, rgba(12, 13, 18, 0.42), rgba(244, 246, 251, 0.94)),
+      url("/src/img/luo8th.png") center top / auto 62vh no-repeat,
+      #f4f6fb;
+  }
+
   .app-shell {
-    width: min(100% - 20px, 1220px);
-    padding: 14px 0 28px;
+    width: 100%;
+    min-height: 100dvh;
+    padding: 12px 10px 24px;
   }
 
   .board-panel,
   .mode-panel {
-    padding: 18px;
+    padding: 16px;
   }
 
   h1 {
-    font-size: 3.1rem;
-  }
-
-  h2 {
-    font-size: 1.4rem;
+    max-width: 340px;
+    font-size: 2.85rem;
+    line-height: 1.05;
   }
 
   .home-screen {
-    gap: 28px;
+    min-height: calc(100dvh - 36px);
+    justify-content: flex-start;
+    gap: 26px;
+    padding-top: 44px;
   }
 
   .home-button {
-    width: min(100%, 320px);
-    min-height: 66px;
-    font-size: 1.18rem;
+    width: min(100%, 280px);
+    min-height: 64px;
+    font-size: 1.12rem;
+  }
+
+  .settings-screen,
+  .game-screen {
+    max-width: none;
+  }
+
+  .screen-actions {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .screen-actions .primary-button,
+  .screen-actions .secondary-button {
+    width: 100%;
+    min-height: 52px;
+    padding: 0 12px;
+  }
+
+  .panel-heading {
+    align-items: start;
+    margin-bottom: 18px;
   }
 
   .mode-grid,
@@ -607,21 +641,195 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .board-top,
-  .result-banner,
+  .mode-grid {
+    gap: 10px;
+  }
+
+  .mode-option {
+    min-height: 78px;
+    padding: 15px 16px;
+  }
+
+  .control-stack {
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .field input,
+  .field select,
+  .guess-box input {
+    min-height: 50px;
+    padding: 0 14px;
+  }
+
+  .range-note {
+    padding: 12px 14px;
+  }
+
   .panel-footer {
     align-items: stretch;
     flex-direction: column;
+    margin-top: 22px;
+    padding-top: 18px;
+  }
+
+  .panel-footer .secondary-button {
+    width: 100%;
+  }
+
+  .board-top {
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .board-top h2 {
+    font-size: 1.42rem;
   }
 
   .attempt-counter {
-    width: 100%;
-    height: 64px;
-    grid-template-columns: auto auto;
-    gap: 8px;
+    min-width: 78px;
+    width: 78px;
+    height: 70px;
   }
 
-  .guess-table {
-    min-width: 760px;
+  .attempt-counter span {
+    font-size: 1.75rem;
+  }
+
+  .attempt-counter small {
+    font-size: 0.76rem;
+  }
+
+  .guess-form {
+    gap: 12px;
+  }
+
+  .guess-form .primary-button {
+    width: 100%;
+  }
+
+  .suggestion-menu {
+    position: static;
+    max-height: 300px;
+    margin-top: 8px;
+    box-shadow: 0 12px 28px rgba(24, 24, 31, 0.16);
+  }
+
+  .suggestion-option {
+    min-height: 58px;
+    padding: 10px 11px;
+  }
+
+  .progress-track {
+    height: 10px;
+    margin: 20px 0 14px;
+  }
+
+  .legend {
+    gap: 10px 12px;
+    margin-bottom: 14px;
+    font-size: 0.92rem;
+  }
+
+  .guess-table-wrap {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .guess-table,
+  .guess-table tbody,
+  .guess-table tr,
+  .guess-table td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .guess-table thead {
+    display: none;
+  }
+
+  .guess-table tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  .guess-table tr {
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+
+  .guess-table tr:has(.empty-state) {
+    border-style: dashed;
+  }
+
+  .guess-table td {
+    min-height: 0;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .guess-table tr:last-child td,
+  .guess-table td:last-child {
+    border-bottom: 0;
+  }
+
+  .result-cell {
+    max-width: none;
+    display: grid;
+    grid-template-columns: 86px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    font-size: 0.98rem;
+  }
+
+  .result-cell::before {
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  .result-cell:nth-child(1)::before {
+    content: "曲名";
+  }
+
+  .result-cell:nth-child(2)::before {
+    content: "投稿年份";
+  }
+
+  .result-cell:nth-child(3)::before {
+    content: "引擎";
+  }
+
+  .result-cell:nth-child(4)::before {
+    content: "播放量";
+  }
+
+  .result-cell:nth-child(5)::before {
+    content: "UP主";
+  }
+
+  .result-cell:nth-child(6)::before {
+    content: "歌姬";
+  }
+
+  .empty-state {
+    height: auto;
+    padding: 54px 18px;
+  }
+
+  .result-banner {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .result-banner .primary-button {
+    width: 100%;
   }
 }

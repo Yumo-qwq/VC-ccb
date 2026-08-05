@@ -81,6 +81,12 @@ function chooseSuggestion(song) {
   isSearchFocused.value = false;
 }
 
+function hideSuggestionsSoon() {
+  window.setTimeout(() => {
+    isSearchFocused.value = false;
+  }, 120);
+}
+
 watch(
   () => props.guesses.length,
   () => {
@@ -114,7 +120,7 @@ watch(
             :disabled="status !== 'playing'"
             @focus="isSearchFocused = true"
             @input="isSearchFocused = true"
-            @blur="isSearchFocused = false"
+            @blur="hideSuggestionsSoon"
           />
           <div v-if="showSuggestions" class="suggestion-menu" role="listbox">
             <button
