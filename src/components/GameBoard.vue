@@ -35,8 +35,17 @@ const props = defineProps({
 const emit = defineEmits(['submit-guess', 'restart']);
 const query = ref('');
 const isSearchFocused = ref(false);
+const isResultModalDismissed = ref(false);
 
 const usedIds = computed(() => new Set(props.guesses.map((guess) => guess.song.id)));
+const cellLabels = {
+  title: '曲名',
+  year: '投稿年份',
+  engine: '引擎',
+  plays: '播放量',
+  producer: 'UP主',
+  singers: '歌姬'
+};
 const suggestions = computed(() => {
   const normalized = query.value.trim().toLowerCase();
   return props.songs
@@ -58,18 +67,22 @@ const progress = computed(() => {
 
 const resultTitle = computed(() => {
   if (props.status === 'won') {
-    return '猜中了';
+    return '\u731c\u4e2d\u4e86';
   }
 
   if (props.status === 'lost') {
-    return '次数用尽';
+    return '\u6b21\u6570\u7528\u5c3d';
   }
 
   if (props.status === 'empty') {
-    return '题池为空';
+    return '\u9898\u6c60\u4e3a\u7a7a';
   }
 
   return '';
+});
+
+const showResultModal = computed(() => {
+  return !isResultModalDismissed.value && (props.status === 'won' || props.status === 'lost');
 });
 
 function submit() {
@@ -87,10 +100,25 @@ function hideSuggestionsSoon() {
   }, 120);
 }
 
+function formatPlays(value) {
+  return new Intl.NumberFormat('zh-CN').format(value);
+}
+
+function closeResultModal() {
+  isResultModalDismissed.value = true;
+}
+
 watch(
   () => props.guesses.length,
   () => {
     query.value = '';
+  }
+);
+
+watch(
+  () => props.status,
+  () => {
+    isResultModalDismissed.value = false;
   }
 );
 </script>
@@ -175,7 +203,8 @@ watch(
               :class="['result-cell', guess.cells[key].state]"
               :title="guess.cells[key].hint"
             >
-              {{ guess.cells[key].text }}
+              <span class="result-label">{{ cellLabels[key] }}</span>
+              <span class="result-value">{{ guess.cells[key].text }}</span>
             </td>
           </tr>
           <tr v-if="!guesses.length">
@@ -187,18 +216,76 @@ watch(
       </table>
     </div>
 
-    <div v-if="status !== 'playing'" class="result-banner" :class="status">
+    <div v-if="status === 'empty'" class="result-banner empty">
       <div>
         <p class="eyebrow">RESULT</p>
         <h3>{{ resultTitle }}</h3>
-        <p v-if="goal">
-          答案是《{{ goal.title }}》 / {{ goal.year }} / {{ goal.producer }} / {{ goal.singers.join('、') }}
-        </p>
-        <p v-else>调整筛选条件后重新开始。</p>
+        <p>调整筛选条件后重新开始。</p>
       </div>
       <button class="primary-button" type="button" @click="emit('restart')">
-        新一题
+        重新开始
       </button>
+    </div>
+
+    <div
+      v-if="showResultModal && goal"
+      class="result-modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      :aria-label="resultTitle"
+      @click.self="closeResultModal"
+    >
+      <section class="result-modal">
+        <div class="result-modal-head">
+          <div>
+            <p class="eyebrow">RESULT</p>
+            <h3>{{ resultTitle }}</h3>
+          </div>
+          <button class="result-modal-close" type="button" aria-label="关闭结果弹窗" @click="closeResultModal">
+            ×
+          </button>
+        </div>
+
+        <div class="result-modal-body">
+          <img class="result-modal-cover" :src="goal.cover" :alt="goal.title" />
+          <div class="result-modal-info">
+            <h4>{{ goal.title }}</h4>
+            <dl class="result-meta-list">
+              <div>
+                <dt>P主</dt>
+                <dd>{{ goal.producer }}</dd>
+              </div>
+              <div>
+                <dt>歌姬</dt>
+                <dd>{{ goal.singers.join('、') }}</dd>
+              </div>
+              <div>
+                <dt>年份</dt>
+                <dd>{{ goal.year }}</dd>
+              </div>
+              <div>
+                <dt>引擎</dt>
+                <dd>{{ goal.engine }}</dd>
+              </div>
+              <div>
+                <dt>播放量</dt>
+                <dd>{{ formatPlays(goal.plays) }}</dd>
+              </div>
+              <div>
+                <dt>Bilibili</dt>
+                <dd>
+                  <a :href="goal.bilibiliUrl" target="_blank" rel="noreferrer noopener">打开链接</a>
+                </dd>
+              </div>
+            </dl>
+            <div class="result-modal-actions">
+              <button class="primary-button" type="button" @click="emit('restart')">
+                再来一局
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </section>
 </template>
