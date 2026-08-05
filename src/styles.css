@@ -35,7 +35,7 @@ body {
   min-height: 100vh;
   background:
     linear-gradient(180deg, rgba(12, 13, 18, 0.46), rgba(244, 246, 251, 0.9)),
-    url("/src/img/luo8th.png") center / cover fixed no-repeat,
+    url("/src/img/luo8th-bg.jpg") center / cover fixed no-repeat,
     #f4f6fb;
 }
 
@@ -576,7 +576,7 @@ h3 {
   body {
     background:
       linear-gradient(180deg, rgba(12, 13, 18, 0.42), rgba(244, 246, 251, 0.94)),
-      url("/src/img/南北.png") center / cover fixed no-repeat,
+      url("/src/img/nanbei-mobile-bg.jpg") center / cover no-repeat,
       #f4f6fb;
   }
 
