@@ -32,6 +32,4 @@ npm run build
 }
 ```
 
-当前题库可通过 `python scripts/scrape_vcpedia_legendary.py --output src/data/vcpedia_legendary_songs.json` 重新生成。
-# deploy
-####
+数据信息来源于 vcpedia.cn，截止至 2026年8月6日。
