@@ -32,4 +32,4 @@ npm run build
 }
 ```
 
-数据信息来源于 vcpedia.cn，截止至 2026年8月6日。
+数据信息来源于 vcpedia.cn，截止至 2026年10月12日。

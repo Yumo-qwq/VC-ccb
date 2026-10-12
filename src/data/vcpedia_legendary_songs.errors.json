@@ -1,12 +1,12 @@
 {
-  "scrapedAt": "2026-08-05T10:43:45.118043+00:00",
+  "scrapedAt": "2026-10-12T07:36:13.026232+00:00",
   "sourcePages": [
     "https://vcpedia.cn/VOCALOID%E4%B8%AD%E6%96%87%E4%BC%A0%E8%AF%B4%E6%9B%B2",
     "https://vcpedia.cn/X_Studio%E4%BC%A0%E8%AF%B4%E6%9B%B2",
     "https://vcpedia.cn/Synthesizer_V%E4%BC%A0%E8%AF%B4%E6%9B%B2",
     "https://vcpedia.cn/ACE%E4%BC%A0%E8%AF%B4%E6%9B%B2"
   ],
-  "skippedCovers": 239,
+  "skippedCovers": 271,
   "statErrors": [
     {
       "title": "二重变革",
