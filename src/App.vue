@@ -117,18 +117,21 @@ function startRound() {
   status.value = 'playing';
 }
 
-function submitGuess(query) {
+function submitGuess({ query, songId }) {
   if (status.value !== 'playing') {
     return;
   }
 
   const normalized = query.trim().toLowerCase();
-  const song = currentPool.value.find((item) => {
-    return item.searchKeys.includes(normalized);
-  });
+  const matches = currentPool.value.filter((item) => item.searchKeys.includes(normalized));
+  const song = songId
+    ? matches.find((item) => item.id === songId)
+    : matches.length === 1 ? matches[0] : null;
 
   if (!song) {
-    notice.value = '请从当前玩法题库中选择一个曲名。';
+    notice.value = matches.length > 1 && !songId
+      ? '存在多个同名版本，请从候选列表中选择具体版本。'
+      : '请从当前玩法题库中选择一个曲名。';
     return;
   }
 

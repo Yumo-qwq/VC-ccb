@@ -34,6 +34,7 @@ const props = defineProps({
 
 const emit = defineEmits(['submit-guess', 'restart']);
 const query = ref('');
+const selectedSongId = ref(null);
 const isSearchFocused = ref(false);
 const isResultModalDismissed = ref(false);
 const coverLoadFailed = ref(false);
@@ -87,12 +88,18 @@ const showResultModal = computed(() => {
 });
 
 function submit() {
-  emit('submit-guess', query.value);
+  emit('submit-guess', { query: query.value, songId: selectedSongId.value });
 }
 
 function chooseSuggestion(song) {
   query.value = song.title;
+  selectedSongId.value = song.id;
   isSearchFocused.value = false;
+}
+
+function handleQueryInput() {
+  selectedSongId.value = null;
+  isSearchFocused.value = true;
 }
 
 function hideSuggestionsSoon() {
@@ -117,6 +124,7 @@ watch(
   () => props.guesses.length,
   () => {
     query.value = '';
+    selectedSongId.value = null;
   }
 );
 
@@ -153,7 +161,7 @@ watch(
             placeholder="输入或选择曲名"
             :disabled="status !== 'playing'"
             @focus="isSearchFocused = true"
-            @input="isSearchFocused = true"
+            @input="handleQueryInput"
             @blur="hideSuggestionsSoon"
           />
           <div v-if="showSuggestions" class="suggestion-menu" role="listbox">
